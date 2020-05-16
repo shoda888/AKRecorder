@@ -1,13 +1,16 @@
-# Azure Kinect Body Tracking Csharp_3d_viewer Sample
+# Recorder for Azure Kinect
 
-## Introduction
+Start recording a human when he appears, otherwise not.
+Save joint positions in a csv format and color PNG images every human.
 
-The Azure Kinect Body Tracking Csharp_3d_viewer sample illustrates the usage of the C# API. This sample:
-* initializes the Kinect sensor and body tracker,
-* passes frames from the sensor to the tracker,
-* pops results from the tracker and visualizes:
-  * depth point cloud, and
-  * tracked bodies and their joints.
+[Example Movie at a living lab](https://youtu.be/yrhxCEUvvkY)
+
+## Environment requirements
+
+Visual Studio 2019
+Azure Kinect DK
+Azure Kinect Sensor SDK >= v1.4.0
+Azure Kinect Body Tracking SDK >= v1.0.1
 
 ## Usage Info
 
