@@ -8,10 +8,10 @@ Also, saving joint positions in a csv format and color PNG images every human.
 
 ## Environment requirements
 
-Visual Studio 2019
-Azure Kinect DK
-Azure Kinect Sensor SDK >= v1.4.0
-Azure Kinect Body Tracking SDK >= v1.0.1
+- Visual Studio 2019
+- Azure Kinect DK
+- Azure Kinect Sensor SDK >= v1.4.0
+- Azure Kinect Body Tracking SDK >= v1.0.1
 
 ## Usage Info
 
