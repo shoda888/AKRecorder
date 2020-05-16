@@ -1,7 +1,8 @@
 # Recorder for Azure Kinect
 
-Start recording a human when he appears, otherwise not.
-Save joint positions in a csv format and color PNG images every human.
+Start recording a human when he or she appears, otherwise not.
+
+Also, saving joint positions in a csv format and color PNG images every human.
 
 [Example Movie at a living lab](https://youtu.be/yrhxCEUvvkY)
 
