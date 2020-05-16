@@ -22,3 +22,6 @@ USAGE: Csharp_3d_viewer.exe
 
 ### Key Shortcuts
 * ESC: quit
+
+## License
+MIT
