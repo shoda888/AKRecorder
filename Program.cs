@@ -30,7 +30,7 @@ namespace Csharp_3d_viewer
                         DepthMode = DepthMode.NFOV_Unbinned,
                         SynchronizedImagesOnly = true,
                         WiredSyncMode = WiredSyncMode.Standalone,
-                        CameraFPS = FPS.FPS30
+                        CameraFPS = FPS.FPS15
                     });
 
                     var deviceCalibration = device.GetCalibration();

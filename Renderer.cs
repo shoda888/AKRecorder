@@ -88,7 +88,6 @@ namespace Csharp_3d_viewer
                 {
                     return;
                 }
-
                 NativeWindow nativeWindow = (NativeWindow)sender;
 
                 Gl.Viewport(0, 0, (int)nativeWindow.Width, (int)nativeWindow.Height);
@@ -98,20 +97,19 @@ namespace Csharp_3d_viewer
                 var proj = Matrix4x4.CreatePerspectiveFieldOfView(ToRadians(65.0f), (float)nativeWindow.Width / nativeWindow.Height, 0.1f, 150.0f);
                 var view = Matrix4x4.CreateLookAt(Vector3.Zero, Vector3.UnitZ, -Vector3.UnitY);
 
-                SphereRenderer.View = view;
-                SphereRenderer.Projection = proj;
-
-                CylinderRenderer.View = view;
-                CylinderRenderer.Projection = proj;
-
-                PointCloudRenderer.View = view;
-                PointCloudRenderer.Projection = proj;
-
-                PointCloud.ComputePointCloud(lastFrame.Capture.Depth, ref pointCloud);
-                PointCloudRenderer.Render(pointCloud, new Vector4(1, 1, 1, 1));
-
-                if(lastFrame.NumberOfBodies > 0)
+                if (lastFrame.NumberOfBodies > 0)
                 {
+                    SphereRenderer.View = view;
+                    SphereRenderer.Projection = proj;
+
+                    CylinderRenderer.View = view;
+                    CylinderRenderer.Projection = proj;
+
+                    PointCloudRenderer.View = view;
+                    PointCloudRenderer.Projection = proj;
+
+                    PointCloud.ComputePointCloud(lastFrame.Capture.Depth, ref pointCloud);
+                    PointCloudRenderer.Render(pointCloud, new Vector4(1, 1, 1, 1));
                     if (!IsHuman)
                     {
                         this.scene = DateTime.Now.ToString("yyyyMMddHHmmssfff");
