@@ -135,16 +135,16 @@ namespace Csharp_3d_viewer
                                 var joint = skeleton.GetJoint(jointId);
                                 sw.Write("{0}, {1}, {2},", joint.Position.X, joint.Position.Y, joint.Position.Z);
                                 
-                                //GUI描画する場合
+                                // GUI描画する場合
                                 // Render the joint as a sphere.
-                                const float radius = 0.024f;
-                                SphereRenderer.Render(joint.Position / 1000, radius, bodyColor);
+                                // const float radius = 0.024f;
+                                // SphereRenderer.Render(joint.Position / 1000, radius, bodyColor);
 
-                                if (JointConnections.JointParent.TryGetValue((JointId)jointId, out JointId parentId))
-                                {
+                                // if (JointConnections.JointParent.TryGetValue((JointId)jointId, out JointId parentId))
+                                // {
                                     // Render a bone connecting this joint and its parent as a cylinder.
-                                    CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
-                                }
+                                    // CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
+                                // }
                             }
                             sw.Write("\r\n"); 
                         }
