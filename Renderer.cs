@@ -26,7 +26,9 @@ namespace Csharp_3d_viewer
 
         public bool IsHuman { get; private set; } = false;
 
+        public string day;
         public string scene;
+        public string now;
 
         public void StartVisualizationThread()
         {
@@ -112,16 +114,17 @@ namespace Csharp_3d_viewer
                     PointCloudRenderer.Render(pointCloud, new Vector4(1, 1, 1, 1));
                     if (!IsHuman)
                     {
-                        this.scene = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                        string path = $@"C:\Users\gekka\temp\{this.scene}\depth";
+                        this.day = DateTime.Now.ToString("yyyyMMdd");
+                        this.scene = DateTime.Now.ToString("HHmmssfff");
+                        string path = $@"C:\Users\gekka\temp\{this.day}\{this.scene}\depth";
                         Directory.CreateDirectory(path);
                         IsHuman = true;
                     }
                     for (uint i = 0; i < lastFrame.NumberOfBodies; ++i)
                     {
                         // System.Diagnostics.Debug.WriteLine(i);
-                        DirectoryUtils.SafeCreateDirectory($@"C:\Users\gekka\temp\{this.scene}\{i}");
-                        string filename = $@"C:\Users\gekka\temp\{this.scene}\{i}\pos.csv";
+                        DirectoryUtils.SafeCreateDirectory($@"C:\Users\gekka\temp\{this.day}\{this.scene}\{i}");
+                        string filename = $@"C:\Users\gekka\temp\{this.day}\{this.scene}\{i}\pos.csv";
                         var append = true;
                         var skeleton = lastFrame.GetBodySkeleton(i);
                         var bodyId = lastFrame.GetBodyId(i);
@@ -129,21 +132,21 @@ namespace Csharp_3d_viewer
 
                         using (var sw = new System.IO.StreamWriter(filename, append))
                         {
-                            sw.Write("{0}, ", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+                            this.now = DateTime.Now.ToString("HHmmssfff");
+                            sw.Write("{0}, ", this.now);
                             for (int jointId = 0; jointId < (int)JointId.Count; ++jointId)
                             {
                                 var joint = skeleton.GetJoint(jointId);
                                 sw.Write("{0}, {1}, {2},", joint.Position.X, joint.Position.Y, joint.Position.Z);
-                                
-                                // GUI描画する場合
-                                // Render the joint as a sphere.
+
+                                // GUI描画する場合 Render the joint as a sphere.
                                 // const float radius = 0.024f;
                                 // SphereRenderer.Render(joint.Position / 1000, radius, bodyColor);
 
                                 // if (JointConnections.JointParent.TryGetValue((JointId)jointId, out JointId parentId))
                                 // {
-                                    // Render a bone connecting this joint and its parent as a cylinder.
-                                    // CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
+                                // Render a bone connecting this joint and its parent as a cylinder.
+                                // CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
                                 // }
                             }
                             sw.Write("\r\n"); 
