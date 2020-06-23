@@ -11,12 +11,12 @@ namespace Csharp_3d_viewer
 {
     public class Renderer
     {
-        private SphereRenderer SphereRenderer;
-        private CylinderRenderer CylinderRenderer;
-        private PointCloudRenderer PointCloudRenderer;
+        // private SphereRenderer SphereRenderer;
+        // private CylinderRenderer CylinderRenderer;
+        // private PointCloudRenderer PointCloudRenderer;
 
         private readonly VisualizerData visualizerData;
-        private List<Vertex> pointCloud = null;
+        // private List<Vertex> pointCloud = null;
         public Renderer(VisualizerData visualizerData)
         {
             this.visualizerData = visualizerData;
@@ -74,7 +74,7 @@ namespace Csharp_3d_viewer
 
             Gl.LineWidth(2.5f);
 
-            CreateResources();
+            // CreateResources();
         }
 
         private static float ToRadians(float degrees)
@@ -96,22 +96,22 @@ namespace Csharp_3d_viewer
                 Gl.Clear(ClearBufferMask.ColorBufferBit);
 
                 // Update model/view/projective matrices in shader
-                var proj = Matrix4x4.CreatePerspectiveFieldOfView(ToRadians(65.0f), (float)nativeWindow.Width / nativeWindow.Height, 0.1f, 150.0f);
-                var view = Matrix4x4.CreateLookAt(Vector3.Zero, Vector3.UnitZ, -Vector3.UnitY);
+                // var proj = Matrix4x4.CreatePerspectiveFieldOfView(ToRadians(65.0f), (float)nativeWindow.Width / nativeWindow.Height, 0.1f, 150.0f);
+                // var view = Matrix4x4.CreateLookAt(Vector3.Zero, Vector3.UnitZ, -Vector3.UnitY);
 
                 if (lastFrame.NumberOfBodies > 0)
                 {
-                    SphereRenderer.View = view;
-                    SphereRenderer.Projection = proj;
+                    // SphereRenderer.View = view;
+                    // SphereRenderer.Projection = proj;
 
-                    CylinderRenderer.View = view;
-                    CylinderRenderer.Projection = proj;
+                    // CylinderRenderer.View = view;
+                    // CylinderRenderer.Projection = proj;
 
-                    PointCloudRenderer.View = view;
-                    PointCloudRenderer.Projection = proj;
+                    // PointCloudRenderer.View = view;
+                    // PointCloudRenderer.Projection = proj;
 
-                    PointCloud.ComputePointCloud(lastFrame.Capture.Depth, ref pointCloud);
-                    PointCloudRenderer.Render(pointCloud, new Vector4(1, 1, 1, 1));
+                    // PointCloud.ComputePointCloud(lastFrame.Capture.Depth, ref pointCloud);
+                    // PointCloudRenderer.Render(pointCloud, new Vector4(1, 1, 1, 1));
                     if (!IsHuman)
                     {
                         this.day = DateTime.Now.ToString("yyyyMMdd");
@@ -164,9 +164,9 @@ namespace Csharp_3d_viewer
 
         private void CreateResources()
         {
-            SphereRenderer = new SphereRenderer();
-            CylinderRenderer = new CylinderRenderer();
-            PointCloudRenderer = new PointCloudRenderer();
+            // SphereRenderer = new SphereRenderer();
+            // CylinderRenderer = new CylinderRenderer();
+            // PointCloudRenderer = new PointCloudRenderer();
         }
         public static class DirectoryUtils
         {

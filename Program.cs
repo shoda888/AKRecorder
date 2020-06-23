@@ -16,7 +16,7 @@ namespace Csharp_3d_viewer
         {
             using (var visualizerData = new VisualizerData())
             {
-                var renderer = new Renderer(visualizerData);
+                var renderer = new PosSaver(visualizerData);
 
                 renderer.StartVisualizationThread();
 
