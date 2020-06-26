@@ -23,7 +23,7 @@ namespace Csharp_3d_viewer
 
         public string day;
         public string scene;
-        public string now;
+        public DateTime now = DateTime.Now;
 
         public void StartVisualizationThread()
         {
@@ -72,17 +72,23 @@ namespace Csharp_3d_viewer
                 {
                     if (!IsHuman)
                     {
-                        this.day = DateTime.Now.ToString("yyyyMMdd");
-                        this.scene = DateTime.Now.ToString("HHmmssfff");
-                        string path = $@"C:\Users\gekka\temp\{this.day}\{this.scene}\depth";
-                        Directory.CreateDirectory(path);
+                        DateTime tmp = DateTime.Now;
+                        TimeSpan baseInterval = new TimeSpan(0, 0, 10);
+                        // Console.WriteLine(TimeSpan.Compare(baseInterval, tmp - now));
+                        if(TimeSpan.Compare(baseInterval, tmp - now) == -1) //別シーンの動作と認識した場合のみ違うディレクトリを生成する
+                        {
+                            now = DateTime.Now;
+                            day = now.ToString("yyyyMMdd");
+                            scene = now.ToString("HHmmssfff");
+                            string path = $@"C:\Users\gekka\temp\{day}\{scene}\depth";
+                            Directory.CreateDirectory(path);
+                        }
                         IsHuman = true;
                     }
                     for (uint i = 0; i < lastFrame.NumberOfBodies; ++i)
                     {
-                        // System.Diagnostics.Debug.WriteLine(i);
-                        DirectoryUtils.SafeCreateDirectory($@"C:\Users\gekka\temp\{this.day}\{this.scene}\{i}");
-                        string filename = $@"C:\Users\gekka\temp\{this.day}\{this.scene}\{i}\pos.csv";
+                        DirectoryUtils.SafeCreateDirectory($@"C:\Users\gekka\temp\{day}\{scene}\{i}");
+                        string filename = $@"C:\Users\gekka\temp\{day}\{scene}\{i}\pos.csv";
                         var append = true;
                         var skeleton = lastFrame.GetBodySkeleton(i);
                         var bodyId = lastFrame.GetBodyId(i);
@@ -90,8 +96,9 @@ namespace Csharp_3d_viewer
 
                         using (var sw = new System.IO.StreamWriter(filename, append))
                         {
-                            this.now = DateTime.Now.ToString("HHmmssfff");
-                            sw.Write("{0}, ", this.now);
+                            now = DateTime.Now;
+                            string string_now = now.ToString("HHmmssfff");
+                            sw.Write("{0}, ", string_now);
                             for (int jointId = 0; jointId < (int)JointId.Count; ++jointId)
                             {
                                 var joint = skeleton.GetJoint(jointId);

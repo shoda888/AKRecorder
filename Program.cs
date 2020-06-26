@@ -74,7 +74,8 @@ namespace Csharp_3d_viewer
                                         }
                                         //書き込み終了
                                         colorBitmap.UnlockBits(bitmapData);
-                                        colorBitmap.Save($@"C:\Users\gekka\temp\{renderer.day}\{renderer.scene}\depth\{renderer.now}.png", System.Drawing.Imaging.ImageFormat.Png);
+                                        string string_now = renderer.now.ToString("HHmmssfff");
+                                        colorBitmap.Save($@"C:\Users\gekka\temp\{renderer.day}\{renderer.scene}\depth\{string_now}.png", System.Drawing.Imaging.ImageFormat.Png);
                                     }
                                 }
                             }
