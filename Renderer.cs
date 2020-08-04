@@ -37,7 +37,7 @@ namespace Csharp_3d_viewer
                 using (NativeWindow nativeWindow = NativeWindow.Create())
                 {
                     IsActive = true;
-                    nativeWindow.ContextCreated += NativeWindow_ContextCreated;
+                    // nativeWindow.ContextCreated += NativeWindow_ContextCreated;
                     nativeWindow.Render += NativeWindow_Render;
                     nativeWindow.KeyDown += (object obj, NativeWindowKeyEventArgs e) =>
                     {
@@ -74,7 +74,7 @@ namespace Csharp_3d_viewer
 
             Gl.LineWidth(2.5f);
 
-            // CreateResources();
+            CreateResources();
         }
 
         private static float ToRadians(float degrees)
@@ -92,8 +92,8 @@ namespace Csharp_3d_viewer
                 }
                 NativeWindow nativeWindow = (NativeWindow)sender;
 
-                Gl.Viewport(0, 0, (int)nativeWindow.Width, (int)nativeWindow.Height);
-                Gl.Clear(ClearBufferMask.ColorBufferBit);
+                // Gl.Viewport(0, 0, (int)nativeWindow.Width, (int)nativeWindow.Height);
+                // Gl.Clear(ClearBufferMask.ColorBufferBit);
 
                 // Update model/view/projective matrices in shader
                 // var proj = Matrix4x4.CreatePerspectiveFieldOfView(ToRadians(65.0f), (float)nativeWindow.Width / nativeWindow.Height, 0.1f, 150.0f);
@@ -139,14 +139,15 @@ namespace Csharp_3d_viewer
                                 var joint = skeleton.GetJoint(jointId);
                                 sw.Write("{0}, {1}, {2},", joint.Position.X, joint.Position.Y, joint.Position.Z);
 
-                                // GUI描画する場合 Render the joint as a sphere.
+                                // GUI描画
+                                // Render the joint as a sphere.
                                 // const float radius = 0.024f;
                                 // SphereRenderer.Render(joint.Position / 1000, radius, bodyColor);
 
                                 // if (JointConnections.JointParent.TryGetValue((JointId)jointId, out JointId parentId))
                                 // {
-                                // Render a bone connecting this joint and its parent as a cylinder.
-                                // CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
+                                //     //Render a bone connecting this joint and its parent as a cylinder.
+                                //     CylinderRenderer.Render(joint.Position / 1000, skeleton.GetJoint((int)parentId).Position / 1000, bodyColor);
                                 // }
                             }
                             sw.Write("\r\n"); 
