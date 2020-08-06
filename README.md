@@ -11,12 +11,10 @@ Also, saving joint positions in a csv format and color PNG images every human.
 - Visual Studio 2019
 - Azure Kinect DK
 - Azure Kinect Sensor SDK >= v1.4.0
-- Azure Kinect Body Tracking SDK >= v1.0.1
+- Azure Kinect Body Tracking SDK >= v1.0.0
 
 ## Usage Info
-
-USAGE: Csharp_3d_viewer.exe
-* there are no arguments, just run the executable.
+Build `Csharp_3d_viewer.sln` or run `Csharp_3d_viewer.exe` which is built.
 
 ## Instruction
 
