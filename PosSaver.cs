@@ -29,6 +29,9 @@ namespace Csharp_3d_viewer
 
         public string day;
         public string scene;
+
+        public static string path = @"C:\Users\gekka\temp"; // YOU NEED CHANGING SAVING PATH
+
         public DateTime now = DateTime.Now;
 
         public void StartVisualizationThread()
@@ -125,15 +128,15 @@ namespace Csharp_3d_viewer
                             now = DateTime.Now;
                             day = now.ToString("yyyyMMdd");
                             scene = now.ToString("HHmmssfff");
-                            string path = $@"C:\Users\gekka\temp\{day}\{scene}\depth";
-                            Directory.CreateDirectory(path);
+                            string depth_path = $@"{path}\{day}\{scene}\depth";
+                            Directory.CreateDirectory(depth_path);
                         }
                         IsHuman = true;
                     }
                     for (uint i = 0; i < lastFrame.NumberOfBodies; ++i)
                     {
-                        DirectoryUtils.SafeCreateDirectory($@"C:\Users\gekka\temp\{day}\{scene}\{i}");
-                        string filename = $@"C:\Users\gekka\temp\{day}\{scene}\{i}\pos.csv";
+                        DirectoryUtils.SafeCreateDirectory($@"{path}\{day}\{scene}\{i}");
+                        string filename = $@"{path}\{day}\{scene}\{i}\pos.csv";
                         var append = true;
                         var skeleton = lastFrame.GetBodySkeleton(i);
                         var bodyId = lastFrame.GetBodyId(i);
